@@ -69,12 +69,9 @@ public class IK_FABRIK2_NEW : MonoBehaviour
             }
             
             // Update original joint rotations
-            for (int i = 0; i <= joints.Length - 2; i++) {
+            for (int i = 0; i <= joints.Length - 1; i++) {
                 MyVector3 A = new MyVector3(joints[i + 1].position - joints[i].position);
                 MyVector3 B = copy[i + 1] - copy[i];
-
-                //float dot = Vector3.Dot(A.normalized, B.normalized);
-                //float alpha = Mathf.Rad2Deg * Mathf.Acos(dot);
 
                 float cosa = MyVector3.Dot(MyVector3.Normalize(A), MyVector3.Normalize(B));
                 float sina = MyVector3.Cross(MyVector3.Normalize(A), MyVector3.Normalize(B)).magnitude;
