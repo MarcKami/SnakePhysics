@@ -72,7 +72,7 @@ public class IK_FABRIK2_NEW : MonoBehaviour
             for (int i = 0; i <= joints.Length - 2; i++) {
                 MyVector3 A = new MyVector3(joints[i + 1].position - joints[i].position);
                 MyVector3 B = copy[i + 1] - copy[i];
-
+                
                 float cosa = MyVector3.Dot(MyVector3.Normalize(A), MyVector3.Normalize(B));
                 float sina = MyVector3.Cross(MyVector3.Normalize(A), MyVector3.Normalize(B)).magnitude;
 
