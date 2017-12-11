@@ -69,7 +69,7 @@ public class IK_FABRIK2_NEW : MonoBehaviour
             }
             
             // Update original joint rotations
-            for (int i = 0; i <= joints.Length - 1; i++) {
+            for (int i = 0; i <= joints.Length - 2; i++) {
                 MyVector3 A = new MyVector3(joints[i + 1].position - joints[i].position);
                 MyVector3 B = copy[i + 1] - copy[i];
 
