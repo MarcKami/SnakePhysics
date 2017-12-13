@@ -91,4 +91,76 @@ public class IK_FABRIK2_NEW : MonoBehaviour
             }         
         }
     }
+
+    Transform ConstrainAngles(Transform target,Joint currentJoin,Joint anterior, float AngleLimit1,float AngleLimit2 )
+    {
+        //haces una recta R con el current joint y el joint anterior
+
+        //encontramos despues O, que es la proyeccion del tarjet en recta R
+
+        //calculamos la distancia entre O y el current Joint
+
+        //como solo usaremos los constrains en 2 dimensiones (ya que evitaremos que gire hacia arriba almenos por el momento) el quadrante q usaremos ya sera el de la dimension X y Y
+        //ahora esto es un problema 2D
+
+
+        //limite del angulo
+        /* ------------------------O-------------------------/<-----------------------(Target)
+          \                        '                        /     
+           \                       '                       /
+            \                      '                      /
+             \                     '                     /
+              \                    '                    /
+               \          recta R  '                   / 
+                \                  '                  / 
+                 \                 '                 /
+                  \                '                /
+                   \               '               /    
+                    \              '              / 
+                     \             '             /
+                      \            '            / 
+                       \           '           /
+                        \          '   angulo /
+                         \ angulo  '---------/ 
+                          \   2    '        / 
+                           \ ------'       /
+                            \      '      /
+                             \     '     /
+                              \    '    /
+                               \   '   /
+                                \  '  /
+                                 \ ' /
+                                  \'/
+                                   position
+                                   jointcurrent
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   '
+                                   previous
+                                   joint
+
+        
+    */
+
+
+        //Explicacion incompleta, ya seguire
+
+
+
+
+
+
+        return target; 
+    }
+
 }
