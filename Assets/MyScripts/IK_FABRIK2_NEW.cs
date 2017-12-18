@@ -13,6 +13,7 @@ public class IK_FABRIK2_NEW : MonoBehaviour
     private bool done;
 
     float treshold_condition = 0.1f;
+    public float maxRotation = 30.0f;
 
     void Start() {
         distances = new float[joints.Length - 1];
@@ -70,6 +71,9 @@ public class IK_FABRIK2_NEW : MonoBehaviour
             
             // Update original joint rotations
             for (int i = 0; i <= joints.Length - 2; i++) {
+                MyQuaternion parentQuat = new MyQuaternion(joints[i + 1].rotation);
+                MyQuaternion myQuat = new MyQuaternion(joints[i].rotation);
+
                 MyVector3 A = new MyVector3(joints[i + 1].position - joints[i].position);
                 MyVector3 B = copy[i + 1] - copy[i];
                 
@@ -81,17 +85,27 @@ public class IK_FABRIK2_NEW : MonoBehaviour
                 MyVector3 myAxis = MyVector3.Normalize(MyVector3.Cross(A, B));
                 //Vector3 axis = new Vector3(myAxis.x, myAxis.y, myAxis.z);
 
-                MyQuaternion myQuat = MyQuaternion.AngleAxis(alpha, ref myAxis);
+                myQuat = MyQuaternion.AngleAxis(alpha, ref myAxis);
                 
                 Quaternion quat = new Quaternion(myQuat.x, myQuat.y, myQuat.z, myQuat.w);
 
                 joints[i].rotation = quat * joints[i].rotation;
                 //joints[i].rotation = Quaternion.AngleAxis(alpha, axis) * joints[i].rotation;
+
+                myQuat = new MyQuaternion(joints[i].rotation);
+
+                float localAngle = MyQuaternion.Angle(parentQuat, myQuat);
+
+                if (Mathf.Abs(localAngle) > maxRotation)
+                    joints[i + 1].rotation = joints[i].rotation;
+
                 joints[i + 1].position = new Vector3(copy[i + 1].x, copy[i + 1].y, copy[i + 1].z);
             }         
         }
     }
 
+
+    //Intento de Constrains
     Transform ConstrainAngles(Transform target,Joint currentJoin,Joint anterior, float AngleLimit1,float AngleLimit2 )
     {
         //haces una recta R con el current joint y el joint anterior

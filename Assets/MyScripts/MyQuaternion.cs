@@ -118,6 +118,15 @@ public class MyQuaternion : MonoBehaviour{
         return result;
     }
 
+    public static float Dot(MyQuaternion a, MyQuaternion b) {
+        return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
+    }
+
+    public static float Angle(MyQuaternion a, MyQuaternion b) {
+        float f = Dot(a, b);
+        return Mathf.Acos(Mathf.Min(Mathf.Abs(f), 1f)) * 2f * 57.29578f;
+    }
+
     //Operators
     public static MyQuaternion operator *(MyQuaternion q, MyQuaternion p) {
         MyQuaternion m = new MyQuaternion();
