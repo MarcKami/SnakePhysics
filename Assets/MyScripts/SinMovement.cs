@@ -23,9 +23,9 @@ public class SinMovement : MonoBehaviour {
 
         float module = Mathf.Sin(Time.time % 2 * Mathf.PI);
         float modifier = 0.66f;
+        float timer = Time.fixedTime;
         
-        for (int i = 0; i < joints.Length; i++)
-        {
+        for (int i = 0; i < joints.Length; i++) {
             PositionFX= joints[i].position.x;
             PositionFY= joints[i].position.y;
             Vector3 idleTilt = new Vector3(joints[i].position.x + module * modifier, joints[i].position.y, joints[i].position.z - 1.0f);
@@ -37,10 +37,8 @@ public class SinMovement : MonoBehaviour {
             //transform.position = Vector3.Lerp(transform.position, idleTilt, idleDelay);
             
             //PositionFX =  0.5f*Mathf.Sin(5f * (joints[i].position.x) - 2* Time.time);
-            joints[i].position= new Vector3(joints[i].position.x+(Mathf.Sin(Time.time)*0.0005f), joints[i].position.y, joints[i].position.z);
-
-
-
+            joints[i].position= new Vector3(joints[i].position.x + (Mathf.Sin(timer + i)*0.0008f), joints[i].position.y, joints[i].position.z);
         }
+
     }
 }
