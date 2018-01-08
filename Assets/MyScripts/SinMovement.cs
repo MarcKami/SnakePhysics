@@ -39,7 +39,7 @@ public class SinMovement : MonoBehaviour {
         float timer = Time.fixedTime;
         float a = 30 * Mathf.Rad2Deg;
         float speed;
-
+        float j = 0;
 
 
         for (int i = 0; i < joints.Length; i++) {
@@ -59,7 +59,7 @@ public class SinMovement : MonoBehaviour {
             scaleY = joints[i].localScale.y;
             scaleZ = joints[i].localScale.z;
 
-            speed = sinSpeed(Time.time - bias, amplitude, frequency, joints[i].position.x);
+            speed = sinSpeed(Time.time - bias/i, amplitude, frequency, joints[i].position.x)*2;
 
             //Vector3 idleTilt = new Vector3(joints[i].position.x + module * modifier, joints[i].position.y, joints[i].position.z - 1.0f);
             //Vector3 idleTilt = new Vector3(transform.position.x + module * modifier, transform.position.y, transform.position.z - 1.0f);
@@ -70,10 +70,17 @@ public class SinMovement : MonoBehaviour {
             //PositionFX =  0.5f*Mathf.Sin(5f * (joints[i].position.x) - 2* Time.time);
 
             //joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer + i) * 0.0008f), joints[i].position.y, joints[i].position.z);
+
+            if (i == j)
+            {
+                joints[i].transform.position = new Vector3(-speed / (i/j), joints[i].position.y, joints[i].position.z);
+                j += 3;
+            }
             
-                joints[i].transform.position = new Vector3(speed/ i, joints[i].position.y, joints[i].position.z);
-            
-            
+            else {
+
+                joints[i].transform.position = new Vector3(speed/i, joints[i].position.y, joints[i].position.z);
+            }
             
             
            
