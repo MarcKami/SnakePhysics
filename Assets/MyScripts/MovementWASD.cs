@@ -11,10 +11,10 @@ public class MovementWASD : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        var z = Input.GetAxis("Horizontal") * Time.deltaTime;
-        var x = Input.GetAxis("Vertical") * Time.deltaTime;
+        var z = Input.GetAxis("Vertical") * Time.deltaTime;
+        var x = Input.GetAxis("Horizontal") * Time.deltaTime;
 
-        transform.Translate(-x, 0, z);
+        transform.Translate(-x, 0, -z);
 
     }
 }
