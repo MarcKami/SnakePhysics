@@ -27,8 +27,16 @@ public class SinMovement : MonoBehaviour {
     public float frequency;
 
     // Use this for initialization
+    public Color c1 = Color.yellow;
+    public Color c2 = Color.red;
+    public int lengthOfLineRenderer = 20;
     void Start()
     {
+        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+        lineRenderer.SetColors(c1, c2);
+        lineRenderer.SetWidth(0.2F, 0.2F);
+        lineRenderer.SetVertexCount(lengthOfLineRenderer);
 
         bias = Time.time;
 
@@ -83,10 +91,17 @@ public class SinMovement : MonoBehaviour {
 
                 Force1.SetPosition(0, joints[i].position);
             }*/
-
+            LineRenderer lineRenderer = GetComponent<LineRenderer>();
+            int y = 0;
+            while (y < lengthOfLineRenderer)
+            {
+                Vector3 pos = new Vector3(joints[i].position.x + y * 0.5F, joints[i].position.y, joints[i].position.z);
+                lineRenderer.SetPosition(y, pos);
+                y++;
+            }
             //joints[i].position = new Vector3((1 / n * Mathf.Sin(a * Mathf.Cos((1 / n)*2) + (1 / n)) * (joints[i].position.x)) *0.05f, joints[i].position.y, joints[i].position.z); ;
         }
-
+        
     }
 
     public float sinSpeed(float t, float amplitude, float frequency, float x)
