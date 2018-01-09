@@ -46,7 +46,7 @@ public class SinMovement : MonoBehaviour {
             
             float n = Vector3.Distance(joints[i + 1].position, joints[i].position);
             Vector3 idleTilt = new Vector3(joints[i].position.x + module * modifier, joints[i].position.y, joints[i].position.z - 1.0f);
-
+            /*
             posX = joints[i].position.x;
             posY = joints[i].position.y;
             posZ = joints[i].position.z;
@@ -57,9 +57,9 @@ public class SinMovement : MonoBehaviour {
 
             scaleX = joints[i].localScale.x;
             scaleY = joints[i].localScale.y;
-            scaleZ = joints[i].localScale.z;
+            scaleZ = joints[i].localScale.z;*/
 
-            speed = sinSpeed(Time.time - bias/i, amplitude, frequency, joints[i].position.x)*2;
+            speed = sinSpeed((Time.time - bias), amplitude, frequency, joints[i].position.z);
 
             //Vector3 idleTilt = new Vector3(joints[i].position.x + module * modifier, joints[i].position.y, joints[i].position.z - 1.0f);
             //Vector3 idleTilt = new Vector3(transform.position.x + module * modifier, transform.position.y, transform.position.z - 1.0f);
@@ -71,19 +71,13 @@ public class SinMovement : MonoBehaviour {
 
             //joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer + i) * 0.0008f), joints[i].position.y, joints[i].position.z);
 
-            if (i == j)
-            {
-                joints[i].transform.position = new Vector3(-speed / (i/j), joints[i].position.y, joints[i].position.z);
-                j += 3;
-            }
-            
-            else {
 
-                joints[i].transform.position = new Vector3(speed/i, joints[i].position.y, joints[i].position.z);
-            }
+            // joints[i].transform.position = new Vector3(speed, joints[i].position.y, joints[i].position.z);
             
+                joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer - joints[i].position.z * 2) * 0.005f + Mathf.Sin(timer - joints[i].position.z / 2) * 0.005f), joints[i].position.y, joints[i].position.z - 0.001f);
             
-           
+
+            
             //joints[i].position = new Vector3((1 / n * Mathf.Sin(a * Mathf.Cos((1 / n)*2) + (1 / n)) * (joints[i].position.x)) *0.05f, joints[i].position.y, joints[i].position.z); ;
         }
 
