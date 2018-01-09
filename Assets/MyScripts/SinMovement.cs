@@ -21,6 +21,8 @@ public class SinMovement : MonoBehaviour {
     private float scaleY;
     private float scaleZ;
 
+    private LineRenderer Force1;
+
     public float amplitude;
     public float frequency;
 
@@ -74,10 +76,14 @@ public class SinMovement : MonoBehaviour {
 
             // joints[i].transform.position = new Vector3(speed, joints[i].position.y, joints[i].position.z);
             
-                joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer - joints[i].position.z * 2) * 0.005f + Mathf.Sin(timer - joints[i].position.z / 2) * 0.005f), joints[i].position.y, joints[i].position.z - 0.001f);
-            
+                joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer - joints[i].position.z * 2) * 0.005f + (Mathf.Sin(timer - joints[i].position.z / 2) * 0.005f)), joints[i].position.y, joints[i].position.z - 0.001f);
+            /*
+            if (joints[i].position.x < 0)
+            {
 
-            
+                Force1.SetPosition(0, joints[i].position);
+            }*/
+
             //joints[i].position = new Vector3((1 / n * Mathf.Sin(a * Mathf.Cos((1 / n)*2) + (1 / n)) * (joints[i].position.x)) *0.05f, joints[i].position.y, joints[i].position.z); ;
         }
 
