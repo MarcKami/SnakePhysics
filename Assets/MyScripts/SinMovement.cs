@@ -133,7 +133,9 @@ public class SinMovement : MonoBehaviour {
             totalForceZ += forcesFinalZ[i];
 
 
-            joints[i].position = new Vector3(joints[i].position.x + (Mathf.Sin(timer - joints[i].position.z * 2) * 0.005f + (Mathf.Sin(timer - joints[i].position.z / 2) * 0.005f)), joints[i].position.y, joints[i].position.z);
+            MyVector3 position = new MyVector3(joints[i].position.x + (Mathf.Sin(timer - joints[i].position.z * 2) * 0.005f + (Mathf.Sin(timer - joints[i].position.z / 2) * 0.005f)), joints[i].position.y, joints[i].position.z);
+
+            joints[i].position = new Vector3(position.x, position.y, position.z);
             
                        
             
@@ -143,7 +145,9 @@ public class SinMovement : MonoBehaviour {
         accel = totalForceZ * mass;
         speed = accel * Time.deltaTime;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed * 0.001f);
+        MyVector3 positionF = new MyVector3(transform.position.x, transform.position.y, transform.position.z - speed * 0.001f);
+
+        transform.position = new Vector3(positionF.x, positionF.y, positionF.z);
 
         RenderText();
     }

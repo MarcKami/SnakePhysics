@@ -9,7 +9,7 @@ public class ArrowRender : MonoBehaviour {
     [SerializeField] private LineRenderer[] forceLineRenderer;
     private Transform[] forcePositions;
     private Transform[] forceDirections;
-    public float lineWidth = 0.005f;
+    public float lineWidth = 0.1f;
     public Vector3 dir;
     //public Vector3 dirMagnuss;
     public Material forces;
@@ -22,10 +22,12 @@ public class ArrowRender : MonoBehaviour {
         Vector3[] initLaserPositions = new Vector3[2] { Vector3.zero, Vector3.zero };
         //initLaserPositions[0] = new Vector3();
         speedLineRenderer.SetPositions(initLaserPositions);
-        speedLineRenderer.SetWidth(lineWidth, lineWidth);
+        speedLineRenderer.startWidth = lineWidth;
+        speedLineRenderer.endWidth = lineWidth;
         for (int i = 0; i < forceLineRenderer.Length; i++) {
             forceLineRenderer[i].SetPositions(initLaserPositions);
-            forceLineRenderer[i].SetWidth(lineWidth, lineWidth);
+            forceLineRenderer[i].startWidth = lineWidth;
+            forceLineRenderer[i].endWidth = lineWidth;
         }
     }
 
